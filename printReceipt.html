@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Print Transaction Receipt Page</title>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+
+</head>
+<body onload="printTransactionReceipt()">
+    <div class=" p-3 ">
+        <h3 class="text-center">TRANSACTION RECEIPT</h3>
+        <p class="text-center"><small>Generated from <span class="text-warning">OTB</span>ank on</small> <small id="trnDate"></small></p>
+        <hr>
+
+        <div class="row px-3 mt-3 justify-content-center">
+            <p class="text-danger  col-2"> Transaction Amount</p>
+            <p id="trnAmt" class="text-primary  col-6 "></p>
+        </div>
+        <hr>
+        <div class="row px-3 justify-content-center">
+            <p class="text-danger  col-2">Transaction Type</p>
+            <p class="text-primary col-6">INTRA-BANK FUNDS TRANSFER</p>
+        </div>
+        <hr>
+        <div class="row px-3 justify-content-center">
+            <p class="text-danger  col-2">Transaction Date</p>
+            <p id="trnDate2" class="text-primary col-6"></p>
+        </div>
+        <hr>
+        <div class="row px-3 justify-content-center">
+            <p class="text-danger  col-2">Sender</p>
+            <p id="trnSender" class="text-primary col-6"></p>
+        </div>
+        <hr>
+        <div class="row px-3 justify-content-center">
+            <p class="text-danger col-2">Beneficiary</p>
+            <p id="trnRec" class="text-primary col-6 "></p>
+        </div>
+        <hr>
+        <div class="row px-3 justify-content-center">
+            <p class="text-danger col-2">Beneficiary Account</p>
+            <p id="trnAcct" class="text-primary col-6 "></p>
+        </div>
+        <hr>
+        <div class="row px-3 justify-content-center">
+            <p class="text-danger col-2">Remark</p>
+            <p id="trnDescr" class="text-primary col-6"></p>
+        </div>
+    </div>
+
+    <hr>
+    <div class="text-center">   
+        <a href="userDashboardPage.html" class="btn btn-success fw-bold">Print Receipt</a>
+        <a href="userDashboardPage.html" class="btn btn-danger fw-bold">Go Back</a>
+    </div>
+
+    
+    <script>
+
+        let allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+        const printTransactionReceipt=()=>{
+            let customerIndex = localStorage.getItem("customerIndex")
+            if (customerIndex) {
+                allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+                for (let index = 0; index < allUsers.length; index++) {
+                    if (index==customerIndex) {
+                        let senderName = allUsers[customerIndex].firstName + " " +  allUsers[customerIndex].lastName
+                        for (let index = 0; index < allUsers[customerIndex].transaction.length; index++) {
+                            trnDate.innerHTML = allUsers[customerIndex].transaction[index].transactionDate
+                            trnAmt.innerHTML = '$ '+ allUsers[customerIndex].transaction[index].Amount
+                            trnDate2.innerHTML = allUsers[customerIndex].transaction[index].transactionDate
+                            trnSender.innerHTML = senderName
+                            trnRec.innerHTML =`
+                                ${allUsers[customerIndex].transaction[index].beneficiary} <br> 
+                                ${allUsers[customerIndex].transaction[index].beneficiaryPhone}<br>
+                            `
+                            trnAcct.innerHTML =`
+                                ${allUsers[customerIndex].transaction[index].beneficiaryAcct}<br>
+                                <span class="text-warning"> OTB</span>ank</small>
+                            `   
+                            trnDescr.innerHTML = allUsers[customerIndex].transaction[index].description
+                        }
+                    }       
+                }
+            }
+        }
+
+    </script>
+
+</body>
+</html>

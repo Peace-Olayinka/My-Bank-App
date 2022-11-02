@@ -70,6 +70,8 @@
             }   
             // for receiver
             let recName
+            let recPhone
+            let recAcct
             let recBal
             allUsers = JSON.parse(localStorage.getItem("localStUsers"))
             for (let indexRec = 0; indexRec < allUsers.length; indexRec++) {
@@ -77,6 +79,8 @@
                     allUsers[indexRec].accountBalance = Number(allUsers[indexRec].accountBalance) + Number(transferAmount)
 
                     recName = allUsers[indexRec].firstName + " " + allUsers[indexRec].lastName
+                    recPhone = allUsers[indexRec].phoneNumber 
+                    recAcct = transferAccount
                     recBal = allUsers[indexRec].accountBalance
                     console.log(allUsers)
                     updateUser()
@@ -91,8 +95,11 @@
                 transactionType:"Debit",
                 Amount: transferAmt.value,
                 availableBalance:allUsers[customerIndex].accountBalance,
-                description:"Cash Transfer to " + recName ,
-                transactionDate:transDate
+                description:"Funds Transfer to " + recName ,
+                transactionDate:transDate,
+                beneficiary:recName,
+                beneficiaryPhone:recPhone,
+                beneficiaryAcct:recAcct
             }
             if (customerIndex) {
                 allUsers = JSON.parse(localStorage.getItem("localStUsers"))
@@ -113,7 +120,7 @@
                 transactionType:"Credit",
                 Amount: transferAmt.value,
                 availableBalance:  recBal,
-                description:"Cash Transfer received from " + senderName ,
+                description:"Funds Transfer received from " + senderName ,
                 transactionDate:transDate
             }
             allUsers = JSON.parse(localStorage.getItem("localStUsers"))
@@ -125,7 +132,7 @@
             }
             
             console.log(allUsers)
-            window.location.href="userDashboardPage.html" 
+            window.location.href="printReceipt.html" 
         }
         
         // To updatelocalStorage
