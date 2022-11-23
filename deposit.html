@@ -57,7 +57,8 @@
                 Amount:depositAmt.value,
                 availableBalance:allUsers[customerIndex].accountBalance,
                 description:"Cash Deposit",
-                transactionDate:transDate
+                transactionDate:transDate.toDateString(),
+                transactionTime:transDate.toLocaleTimeString()
             }
             if (customerIndex) {
                 allUsers = JSON.parse(localStorage.getItem("localStUsers"))

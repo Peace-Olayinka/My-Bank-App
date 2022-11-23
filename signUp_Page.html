@@ -15,9 +15,13 @@
         <h6 class="text-center text-success"> Sign-Up here to get started </h6>
         <div id="mywarning"></div>
         <input type="text" placeholder="Enter Your Firstname" id="fName" class="p-2 rounded-3 form-control"> 
+        <div id="mywarningFN"></div>
         <input type="text" placeholder="Enter  Your Lastname"  id="lName"  class="p-2 rounded-3 form-control">
+        <div id="mywarningLN"></div>
         <input type="email" placeholder="Enter Your Email"  id="inpMail"  class="p-2 rounded-3 form-control">
+        <div id="mywarningEM"></div>
         <input type="text" placeholder="Enter Your Phone Number"  id="phoneNo"  class="p-2 rounded-3 form-control">
+        <div id="mywarningPH"></div>
         <span class=" border border-dark p-2  rounded-3">
             <label for="">Date Of Birth:</label> &nbsp;
             <input type="date"class=" border border-white" id="doBirth">
@@ -28,7 +32,14 @@
             <option value="Female" id="fGender">Female</option>
         </select>
         <input type="password" placeholder="Enter Your Password"  id="passW"  class="p-2 rounded-3 form-control">
-        <!-- <input type="password" placeholder="Confirm Password" class=" p-2 rounded-3 "> -->
+        <div id="mywarningPW"></div>
+        <!-- verifications -->
+        <input type="password" placeholder="Confirm Password" id="confirmPW" class=" p-2 rounded-3 ">
+        <div id="mywarningCP"></div>
+        <label for="" class="text-danger fs-6">Create a Secret *4 digits* PIN for your Transactions</label>
+        <input type="number" placeholder="Enter 4 digits  secret PIN"  id="userPin" class="p-2 rounded-3 form-control">
+        <div id="mywarningPN"></div>
+
         <button onclick="mySignUp()" class=" btn btn-success  rounded-5 mt-2">Sign-Up</button>
         <a href="signIn_Page.html" class="text-decoration-none btn btn-primary  rounded-5 mt-2">Already have an account? Sign-In</a>
         <a href="index.html" class="text-decoration-none btn btn-success  rounded-5">Home</a>
@@ -50,6 +61,7 @@
     let regexforMail  = /^([\w]+)([@])([\w]+)([.])([\w]+)$/
     let regexforPhone  = /^([\d]{11})$/
     let regexforPass  = /^([\w]{6,9})$/
+    let regexforPIN  = /^([\d]{4})$/
     const mySignUp=()=>{
         var myGender = myGen.value
         let acctNum = Math.round(Math.random()*10000000000)
@@ -61,9 +73,11 @@
             email:inpMail.value,
             phoneNumber:phoneNo.value,
             password:passW.value,
+            confirmPass:confirmPW.value,
+            userTransactionPIN:userPin.value,
             gender:myGender,
             accountNumber:acctNum,
-            registrationDate:regDate,
+            registrationDate:regDate.toLocaleDateString(),
             accountBalance:0,
             transaction:[]
         }
@@ -78,30 +92,41 @@
             mywarning.innerHTML = `<small class="text-danger"> fill out empty fields to continue!</small>` 
         }
         else if (!regexforMail.test(inpMail.value)) {
-            mywarning.innerHTML = `<small class="text-danger"> Invalid Email Address!!!</small>`
+            mywarningEM.innerHTML = `<small class="text-danger"> Invalid Email Address!!!</small>`
             inpMail.className ="form-control is invalid"
             console.log(' Email Adress is not correct!')
         }
         else if (!regexforPass.test(passW.value)) {
-            mywarning.innerHTML = `<small class="text-danger"> Invalid  Password!!! <br> Password must contain minimum of 6 characters and maximum of 9 characters</small>`
+            mywarningPW.innerHTML = `<small class="text-danger"> Invalid  Password!!! <br> Password must contain minimum of 6 characters and maximum of 9 characters</small>`
             passW.className ="form-control is invalid"
             console.log(' Password is not correct')
             
         }
         else if (!regexforFName.test(fName.value)) {
-            mywarning.innerHTML = `<small class="text-danger"> First Name must start with CAPITAL LETTER!!!</small>`
+            mywarningFN.innerHTML = `<small class="text-danger"> First Name must start with CAPITAL LETTER!!!</small>`
             fName.className ="form-control is invalid"
             console.log(' First Name is not correct')   
         }
         else if (!regexforLName.test(lName.value)) {
-            mywarning.innerHTML = `<small class="text-danger"> Last Name must start with CAPITAL LETTER!!!</small>`
+            mywarningLN.innerHTML = `<small class="text-danger"> Last Name must start with CAPITAL LETTER!!!</small>`
             lName.className ="form-control is invalid"
             console.log('Last Name is not correct')     
         }
         else if (!regexforPhone.test(phoneNo.value)) {
-            mywarning.innerHTML = `<small class="text-danger"> Phone Number must contain 11 DIGITS!!!</small>`
+            mywarningPH.innerHTML = `<small class="text-danger"> Phone Number must contain 11 DIGITS!!!</small>`
             phoneNo.className ="form-control is invalid"
             console.log('Phone Number is not correct')     
+        }
+        else if (!regexforPIN.test(userPin.value)) {
+            mywarningPN.innerHTML = `<small class="text-danger"> Transaction PIN must contain 4 DIGITS!!!</small>`
+            phoneNo.className ="form-control is invalid"
+            console.log(' User Transaction PIN is not correct')     
+        }
+        else if (confirmPW.value !=passW.value) {
+            mywarningCP.innerHTML = `<small class="text-danger">Password  not match!!!</small>`
+            mywarningPW.innerHTML = `<small class="text-danger">Password  not match!!!</small>`
+            phoneNo.className ="form-control is invalid"
+            console.log('Password not match')     
         }
         else{
             allUsers.push(newUser)

@@ -13,8 +13,14 @@
     <br>
     <br>
     <div id="dashbdbox" class="text-bg-dark w-50 m-auto mt-5 text-center py-5">
-        <div id="myWelcome" class="text-center  m-auto "></div>
-    
+        <div>
+            <div id="myWelcome" class="text-center  m-auto "></div>
+            <span>
+                <button onclick="hideBal()" class="btn btn-primary" id="hideAcctBal">Hide Account Balance</button>
+                <button onclick="showBal()" class="btn btn-primary" id="showAcctBal" style="display:none;">Show Account Balance</button>
+            </span>
+        </div>
+
         <div id="btnbox" class="text-center p-5 ">
             <button class="btn btn-warning fw-bold" onclick="depositPg()">Deposit Fund</button>
             <button class="btn btn-warning fw-bold" onclick="withdrawPg()">Withdrawal</button>
@@ -42,7 +48,7 @@
                         myWelcome.innerHTML =`
                             <h3> Welcome, ${allUsers[index].firstName} ${allUsers[index].lastName}</h3>
                             <p> Account Number : <strong> ${allUsers[index].accountNumber}</strong>  </p> 
-                            <p> Account Balace : <strong> $ ${allUsers[index].accountBalance}</strong> </p>      
+                            <p> Account Balace : <strong id="dispBalance"> $ ${allUsers[index].accountBalance}</strong> </p>      
                         ` 
                         console.log(allUsers)
                         console.log(allUsers[index].firstName)
@@ -50,6 +56,17 @@
                     }  
                }
             }
+        }
+
+        const hideBal=()=>{
+            dispBalance.style.display = "none"
+            showAcctBal.style.display = "inline"
+            hideAcctBal.style.display = "none"
+        }
+        const showBal=()=>{
+            dispBalance.style.display = "inline"
+            hideAcctBal.style.display = "inline"
+            showAcctBal.style.display = "none"
         }
 
         const signOut =()=>{
@@ -69,6 +86,12 @@
         }
         const transactionHistPg=()=>{
             window.location.href = "transactionHistory.html"
+        }
+        const airtimePg=()=>{
+            window.location.href = "airtimePurchase.html"
+        }
+        const payBillsPg=()=>{
+            window.location.href = "payBills.html"
         }
     </script>
 

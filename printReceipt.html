@@ -70,9 +70,9 @@
                     if (index==customerIndex) {
                         let senderName = allUsers[customerIndex].firstName + " " +  allUsers[customerIndex].lastName
                         for (let index = 0; index < allUsers[customerIndex].transaction.length; index++) {
-                            trnDate.innerHTML = allUsers[customerIndex].transaction[index].transactionDate
-                            trnAmt.innerHTML = '$ '+ allUsers[customerIndex].transaction[index].Amount
-                            trnDate2.innerHTML = allUsers[customerIndex].transaction[index].transactionDate
+                            trnDate.innerHTML = allUsers[customerIndex].transaction[index].transactionDate + " "+ allUsers[customerIndex].transaction[index].transactionTime
+                            trnAmt.innerHTML = '$ ' + allUsers[customerIndex].transaction[index].Amount
+                            trnDate2.innerHTML = allUsers[customerIndex].transaction[index].transactionDate + " " + allUsers[customerIndex].transaction[index].transactionTime 
                             trnSender.innerHTML = senderName
                             trnRec.innerHTML =`
                                 ${allUsers[customerIndex].transaction[index].beneficiary} <br> 
