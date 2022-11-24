@@ -76,7 +76,7 @@
                             } 
                             else{ 
                                 allUsers = JSON.parse(localStorage.getItem("localStUsers"))
-                                let found = allUsers.findIndex(s=>s.accountNumber==transferAccount)   
+                                let found = allUsers.find(s=>s.accountNumber==transferAccount)   
                                 if (!found) {
                                     alert(`ERROR! Sender's beneficiary account  NOT FOUND!`)
                                     window.location.href = "userDashboardPage.html"
