@@ -1,23 +1,42 @@
 #main{
     width: 100%;
-    height: 100vh;
-    background-image: url(./pic1.png);
+    /* height: 100vh; */
+    /* background-image: url(./pic1.png); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 #topnav{
-     background-color: oldlace;
+    background-color: oldlace;
+    position: sticky;
+    top: 0;     
+}
+#navbarNavAltMarkup a{
+    color: #40196D;
 }
 #nav1btn{
-    background-color: #000000;
-    color: white;   
+    background-color:  #40196D;
 }
 #herotxt{
     font-family: 'Franklin Gothic Medium';
-    font-size: 4rem;
+    font-size: 2.5rem;
+    color: #40196D;
 }
 #inviteDiv{
     width: 100%;
-    background-color: pink;
+    background-color: oldlace;
+    position: sticky;
+    bottom:0;
+}
+.mycolor{
+    color: #40196D;
+}
+#footBox{
+    background-image: url(./pic1.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+.fa{
+    color: #40196D;
 }
