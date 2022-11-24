@@ -73,28 +73,35 @@
                             else if(transferAmount > senderBal){
                                 alert('INSUFICIENT FUND!!')
                                 window.location.href = "userDashboardPage.html"
-                            }  
+                            } 
                             else{ 
-                                let confirmation = prompt(`You are about to make a  Transfer $${transferAmount} to ${recName}. Enter PIN to proceed`)  
-                                if (confirmation == allUsers[indexSender].userTransactionPIN) {
-                                    allUsers[indexSender].accountBalance = allUsers[indexSender].accountBalance - Number(transferAmount) 
-                                    senderBal = allUsers[indexSender].accountBalance
-                                    updateUser()  
-                                  
-                                    //for receiver
-                                    allUsers = JSON.parse(localStorage.getItem("localStUsers"))
-                                    for (let indexRec = 0; indexRec < allUsers.length; indexRec++) {
-                                        if (allUsers[indexRec].accountNumber==transferAccount) {
-                                            allUsers[indexRec].accountBalance = Number(allUsers[indexRec].accountBalance) + Number(transferAmount)
-                                            recBal = allUsers[indexRec].accountBalance
-                                            updateUser()   
-                                        }
-                                    }
-                                    console.log(allUsers)
-                                    window.location.href="printReceipt.html"  
-
+                                allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+                                let found = allUsers.findIndex(s=>s.accountNumber==transferAccount)   
+                                if (!found) {
+                                    alert(`ERROR! Sender's beneficiary account  NOT FOUND!`)
+                                    window.location.href = "userDashboardPage.html"
                                 }else{
-                                    alert("Transaction failed due to INCORRECT PIN!!!")
+                                    let confirmation = prompt(`You are about to make a  Transfer $${transferAmount} to ${recName}. Enter PIN to proceed`)  
+                                    if (confirmation == allUsers[indexSender].userTransactionPIN) {
+                                        allUsers[indexSender].accountBalance = allUsers[indexSender].accountBalance - Number(transferAmount) 
+                                        senderBal = allUsers[indexSender].accountBalance
+                                        updateUser()  
+                                      
+                                        //for receiver
+                                        allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+                                        for (let indexRec = 0; indexRec < allUsers.length; indexRec++) {
+                                            if (allUsers[indexRec].accountNumber==transferAccount) {
+                                                allUsers[indexRec].accountBalance = Number(allUsers[indexRec].accountBalance) + Number(transferAmount)
+                                                recBal = allUsers[indexRec].accountBalance
+                                                updateUser()   
+                                            }
+                                        }
+                                        console.log(allUsers)
+                                        window.location.href="printReceipt.html"  
+    
+                                    }else{
+                                        alert("Transaction failed due to INCORRECT PIN!!!")
+                                    }
                                 }
                             }
                         }
