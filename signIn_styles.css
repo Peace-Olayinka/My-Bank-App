@@ -1,20 +1,22 @@
 body{
-    background-image: url(./pic1.png);
+    width: 100%; height: 90vh;
+    background-image: url(./myLOGO-removebg-preview.png);
+    background-color: #ddd4e6 !important;
     background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background-position:center;
+    background-size: contain;
+   
 }
-
 #mybox{
-    width: 30%;
-    margin: auto;
+    width: 30%; height: 90%;
+    background-color:#ede9f3;
     display: flex;
     flex-direction: column;
     gap: 10px;
     justify-content: center;
-    border-top: 2px solid black;
-    border-left: 2px solid black;
-    box-shadow: 10px 10px 10px black;  
+    border-top: 2px solid #40196D;
+    border-left: 2px solid #40196D;
+    box-shadow: 10px 10px 10px #514a5a;  
 }
 @media screen and (max-width:800px) {
     div{

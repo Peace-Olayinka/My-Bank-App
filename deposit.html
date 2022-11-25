@@ -30,6 +30,7 @@
         let allUsers = JSON.parse(localStorage.getItem("localStUsers"))
         const makeDeposit=()=>{
             let currentUser =  localStorage.getItem("currentUser") 
+            let transctionSuccess = false
             let depositAmount = depositAmt.value
             if (currentUser) {
                 if (depositAmt.value <=0) {
@@ -43,6 +44,7 @@
                             let confirmation = confirm('do you want to proceed with this transaction?')
                             if (confirmation) {
                                 allUsers[index].accountBalance = Number(allUsers[index].accountBalance) + Number(depositAmount)
+                                transctionSuccess = true
                                 updateUser()  
                             }
                         }
@@ -61,13 +63,15 @@
                 transactionTime:transDate.toLocaleTimeString()
             }
             if (customerIndex) {
-                allUsers = JSON.parse(localStorage.getItem("localStUsers"))
-                for (let index = 0; index < allUsers.length; index++) {
-                   if (index==customerIndex) {
-                        allUsers[customerIndex].transaction.push(newTransaction)
-                        updateUser()
-                    }
-                
+                if ( transctionSuccess == true) {
+                    allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+                    for (let index = 0; index < allUsers.length; index++) {
+                       if (index==customerIndex) {
+                            allUsers[customerIndex].transaction.push(newTransaction)
+                            updateUser()
+                        }
+                    
+                    }   
                 }
             }
 

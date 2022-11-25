@@ -49,6 +49,7 @@
 
         const makePayment=()=>{
             let currentUser =  localStorage.getItem("currentUser") 
+            let  transctionSuccess = false
             let billAmount = inpAmt.value
            
             if (currentUser) {
@@ -65,6 +66,7 @@
                                 let confirmation = prompt(`Enter PIN to confirm payment of $${billAmount} for Utility/bills`)
                                 if (confirmation  == allUsers[index].userTransactionPIN) {
                                     allUsers[index].accountBalance = Number(allUsers[index].accountBalance) - Number(billAmount)
+                                    transctionSuccess = true
                                     updateUser()  
                                 }else{
                                     alert("Transaction failed due to INCORRECT PIN!")
@@ -89,12 +91,14 @@
                 transactionTime:transDate.toLocaleTimeString()
             }
             if (customerIndex) {
-                allUsers = JSON.parse(localStorage.getItem("localStUsers"))
-                for (let index = 0; index < allUsers.length; index++) {
-                   if (index==customerIndex) {
-                        allUsers[customerIndex].transaction.push(newTransaction7)
-                        updateUser()
-                    }
+                if ( transctionSuccess == true) {
+                    allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+                    for (let index = 0; index < allUsers.length; index++) {
+                       if (index==customerIndex) {
+                            allUsers[customerIndex].transaction.push(newTransaction7)
+                            updateUser()
+                        }
+                    } 
                 }
             }
 

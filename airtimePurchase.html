@@ -74,6 +74,7 @@
         // airtime for self
         const selfAirtime=()=>{
             let currentUser =  localStorage.getItem("currentUser") 
+            let  transctionSuccess = false
             let selfAirtimeAmount = selfAmt.value
             if (currentUser) {
                 if (selfAmt.value <=0) {
@@ -89,8 +90,9 @@
                                 let confirmation = prompt(`Enter PIN to purchase ${selfAirtimeAmount} Airtime for Self`)
                                 if (confirmation  == allUsers[index].userTransactionPIN) {
                                     allUsers[index].accountBalance = Number(allUsers[index].accountBalance) - Number(selfAirtimeAmount)
+                                    transctionSuccess = true
                                     updateUser()   
-                                } else{
+                                }else{
                                     alert("Transaction failed due to INCORRECT PIN!")
                                 }
 
@@ -113,12 +115,14 @@
                 transactionTime:transDate.toLocaleTimeString()
             }
             if (customerIndex) {
-                allUsers = JSON.parse(localStorage.getItem("localStUsers"))
-                for (let index = 0; index < allUsers.length; index++) {
-                   if (index==customerIndex) {
-                        allUsers[customerIndex].transaction.push(newTransaction5)
-                        updateUser()
-                    }
+                if ( transctionSuccess == true) {
+                    allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+                    for (let index = 0; index < allUsers.length; index++) {
+                       if (index==customerIndex) {
+                            allUsers[customerIndex].transaction.push(newTransaction5)
+                            updateUser()
+                        }
+                    }  
                 }
             }
 
@@ -132,6 +136,7 @@
         // airtime for others
         const OthersAirtime=()=>{
             let currentUser =  localStorage.getItem("currentUser") 
+            let transctionSuccess = false
             let othersNumber = othersPhone.value
             let othersAirtimeAmount = othersAmt.value
             let othersNetwork = othersNetwk.value
@@ -152,6 +157,7 @@
                                 let confirmation = prompt(`Enter PIN to purchase $${othersAirtimeAmount} ${othersNetwork} Airtime for ${othersNumber}`)
                                 if (confirmation == allUsers[index].userTransactionPIN) {
                                     allUsers[index].accountBalance = Number(allUsers[index].accountBalance) - Number(othersAirtimeAmount)
+                                    transctionSuccess = true
                                     updateUser()  
                                 }else{
                                     alert("Transaction failed due to INCORRECT PIN!")
@@ -177,12 +183,14 @@
                 transactionTime:transDate.toLocaleTimeString()
             }
             if (customerIndex) {
-                allUsers = JSON.parse(localStorage.getItem("localStUsers"))
-                for (let index = 0; index < allUsers.length; index++) {
-                   if (index==customerIndex) {
-                        allUsers[customerIndex].transaction.push(newTransaction6)
-                        updateUser()
-                    }
+                if ( transctionSuccess == true) {
+                    allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+                    for (let index = 0; index < allUsers.length; index++) {
+                       if (index==customerIndex) {
+                            allUsers[customerIndex].transaction.push(newTransaction6)
+                            updateUser()
+                        }
+                    } 
                 }
             }
 
