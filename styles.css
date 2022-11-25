@@ -9,7 +9,8 @@
 #topnav{
     background-color: oldlace;
     position: sticky;
-    top: 0;     
+    top: 0;  
+    z-index: 10;   
 }
 #navbarNavAltMarkup a{
     color: #40196D;
@@ -27,16 +28,33 @@
     background-color: oldlace;
     position: sticky;
     bottom:0;
+    z-index: 10;
 }
 .mycolor{
     color: #40196D;
 }
 #footBox{
-    background-image: url(./pic1.png);
+    background-image: url(./animate-8.svg);
     background-repeat: no-repeat;
     background-position: right;
     background-size: contain;
 }
 .fa{
     color: #40196D;
+}
+@keyframes translate {
+    0% {
+        transform: translate(100%,0);
+    }
+
+    100% {
+        transform: translate(5%, 0);
+    }
+} 
+#animateBox{
+    animation-name: translate;
+    animation-duration: 2000ms;
+    animation-iteration-count:1;
+    animation-fill-mode: forwards;
+    animation-delay:0ms;
 }
