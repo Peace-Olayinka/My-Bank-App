@@ -53,3 +53,8 @@
     animation-fill-mode: forwards;
     animation-delay:0ms;
 }
+@media screen and (max-width:800px) {
+    #hideImg{
+        display: none;
+    }
+}

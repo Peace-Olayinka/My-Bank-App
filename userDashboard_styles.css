@@ -7,32 +7,57 @@ body{
     background-color: #dfd1ed !important;
 }
 #topsec{
-    background-color: #40196D;
+    background-color: #512d79;
     color: white;
     padding: 1em;
-    /* position: sticky;
-    top: 0; */
+}
+@media screen and (max-width:600px) {
+    #topsec p{
+       font-size: medium !important; 
+    }
+}
+#namebox{
+    position: sticky;
+    top: 0;
+    background-color: #512d79;
+    color: white;
 }
 #mainsec{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 }
 @media screen and (max-width:1100px) {
     #mainsec{
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(3, 1fr); 
+        justify-content: center;   
+    }
+}
+@media screen and (max-width:600px) {
+    #mainsec{
+        grid-template-columns: repeat(2, 50%); 
         justify-content: center;   
     }
 }
 .sec{
-    background-color: #917ea7;
+    /* background-color: #917ea7; */
+    background-color: white;
+    color: #512d79;
     border-radius: 10px;
-    height: 30vh;
-   
+    height: 30vh;  
+}
+@media screen and (max-width:600px) {
+    .sec{
+        height: 21vh;  
+    }
+    .sec button{
+        font-size: small !important;
+    }
 }
 .sec:hover{
     background-color: #40196D;
+    color: white;
 }
 /* for other pages */
 #dashbdbox{

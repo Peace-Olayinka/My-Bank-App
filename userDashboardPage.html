@@ -11,69 +11,79 @@
     <script src="https://use.fontawesome.com/3c538cc85f.js"></script>
 </head>
 <body  onload="getCurrentUserDetails()">
-    <div id="topsec" class="px-3">
-        <div >
-            <h2 class="text-center"> Hi, <strong id="dispUserName"></strong></h2>
-            <hr>
-        </div>
-
-        <div class="pb-3">
-            <span  style="float: right;">
-                <button onclick="hideBal()" class="btn btn-secondary" id="hideAcctBal">Hide Balance <i class="fa fa-eye-slash fs-5" aria-hidden="true"></i></button>
-                <button onclick="showBal()" class="btn btn-secondary" id="showAcctBal" style="display:none;">Show Balance <i class="fa fa-eye fs-5" aria-hidden="true"></i></button>
-            </span><br>
-            <img src="" id="dispImg" alt="" style="width:60px; height:60px; border-radius:100%; background-color:white;" >
-            <p class="fs-5"> Account Number : <strong id="dispAcctNo"> </strong>  </p> 
-            <span class="fs-5"> Account Balace : <strong id="dispBalance"> $ </strong> </span> 
-        </div>
-
+    <div id="namebox" class="py-2"> 
+        <h3 class="text-center"> Hi, <strong id="dispUserName"></strong></h3>
+        <hr>
+    </div>
+    <div id="topsec" class="px-4"> 
+       
+        <span  style="float: right;">
+            <button onclick="hideBal()" class="btn btn-secondary btn-outline-light fw-bold " id="hideAcctBal">Hide Balance <i class="fa fa-eye-slash fs-5" aria-hidden="true"></i></button>
+            <button onclick="showBal()" class="btn btn-secondary btn-outline-light fw-bold " id="showAcctBal" style="display:none;">Show Balance <i class="fa fa-eye fs-5" aria-hidden="true"></i></button>
+        </span><br>
+        <img src="" id="dispImg" alt="" style="width:60px; height:60px; border-radius:100%; background-color:white;" >
+        <p class="fs-5"> Account Number : <strong id="dispAcctNo"> </strong> </p> 
+        <p class="fs-5" style="margin-top:-0.8em;"> Account Balace : <strong id="dispBalance"> </strong> </p> 
+    
     </div>
    
     <div id="mainsec" class=" px-3 my-3 ">
 
         <div  class="sec text-center">
-            <button class=" btn w-100 h-100 btn-lg text-white fw-bold" onclick="depositPg()">Add Fund</button>
+            <button class=" btn w-100 h-100 btn-lg  fw-bold shadow-lg " onclick="depositPg()"> <img src="./money-deposit.svg" alt="" style="height:100px;"> <br> Add Fund</button>
         </div> 
 
         <div  class="sec text-center"> 
-            <button class="btn w-100 h-100 btn-lg  text-white fw-bold" onclick="withdrawPg()">Withdrawal</button>
+            <button class="btn w-100 h-100 btn-lg  fw-bold shadow-lg " onclick="withdrawPg()"> <img src="./money-withdraw.svg" alt="" style="height:100px;"> <br>  Withdrawal</button>
         </div>
 
         <div  class="sec text-center">
-            <button class="btn w-100 h-100 btn-lg  text-white fw-bold" onclick="transferPg()">Transfer Fund</button>
+            <button class="btn w-100 h-100 btn-lg  fw-bold shadow-lg " onclick="transferPg()"> <img src="./money-transfer.svg" alt="" style="height:100px;"> <br>  Transfer Fund</button>
         </div>
 
         <div  class="sec text-center">
-            <button class="btn w-100 h-100 btn-lg text-white fw-bold" onclick="airtimePg()">Purchase Airtime</button>
+            <button class="btn w-100 h-100 btn-lg fw-bold shadow-lg " onclick="airtimePg()"> <img src="./money-airtime.svg" alt="" style="height:100px;"> <br>  Purchase Airtime</button>
         </div>
 
         <div  class="sec text-center">
-            <button class="btn w-100 h-100 btn-lg  text-white fw-bold" onclick="payBillsPg()">Pay Bills</button>
+            <button class="btn w-100 h-100 btn-lg fw-bold shadow-lg " onclick="payBillsPg()"> <img src="./money-payment.svg" alt="" style="height:100px;"> <br>  Pay Bills</button>
         </div>
 
         <div  class="sec text-center">
-            <button class="btn w-100 h-100 btn-lg  text-white fw-bold" onclick="transactionHistPg()">Transaction History</button>
+            <button class="btn w-100 h-100 btn-lg fw-bold shadow-lg " onclick="transactionHistPg()"> <img src="./money-history.svg" alt="" style="height:100px;"> <br>  Transaction History</button>
         </div>
 
         <div  class="sec text-center">
-            <button class="btn w-100 h-100 btn-lg  text-white fw-bold">My Cards</button>
+            <button class="btn w-100 h-100 btn-lg fw-bold shadow-lg "> <img src="./money-cards.svg" alt="" style="height:100px;"> <br>  My Cards</button>
+        </div>
+
+        <div  class="sec text-center ">
+            <button class="btn w-100 h-100 btn-lg  fw-bold shadow-lg "> <img src="./money-rate.svg" alt="" style="height:100px;"> <br> Spending Rate</button>
         </div>
 
         <div  class="sec text-center">
-            <button class="btn w-100 h-100 btn-lg  text-white fw-bold">Others</button>
+            <button class="btn w-100 h-100 btn-lg fw-bold shadow-lg "> <img src="./money-others.svg" alt="" style="height:100px;"> <br>  Others</button>
         </div>
         
         <div  class="sec text-center ">
-            <button class="btn w-100 h-100 btn-lg  text-white fw-bold">Graph</button>
+            <button class="btn w-100 h-100 btn-lg  fw-bold shadow-lg "> <img src="./money-rate.svg" alt="" style="height:100px;"> <br>Inesvtments</button>
+        </div>
+
+        <div  class="sec text-center ">
+            <button class="btn w-100 h-100 btn-lg  fw-bold shadow-lg "> <img src="./money-rate.svg" alt="" style="height:100px;"> <br> Shares</button>
+        </div>
+
+        <div  class="sec text-center ">
+            <button class="btn w-100 h-100 btn-lg  fw-bold shadow-lg "> <img src="./money-rate.svg" alt="" style="height:100px;"> <br> More...</button>
         </div>
   
     </div>
-
+    <hr>
     <div class="text-center my-3">
-        <button onclick="signOut()" class=" btn btn-secondary  fw-bold text-whitem me-3 ">Sign Out</button>
-        <a href="index.html" class=" btn btn-secondary text-decoration-none fw-bold text-white ">Home</a>
+        <button onclick="signOut()" class=" btn btn-secondary btn-outline-light fw-bold text-whitem me-3 ">Sign Out</button>
+        <a href="index.html" class=" btn btn-secondary btn-outline-light  fw-bold ">Home</a>
     </div>
-
+    <hr>
 
     <script>
         const getCurrentUserDetails=()=>{
@@ -84,7 +94,7 @@
                     if (allUsers[index].email === currentUser) {
                         dispUserName.innerText = `${allUsers[index].firstName} ${allUsers[index].lastName}`
                         dispAcctNo.innerText = `${allUsers[index].accountNumber}`
-                        dispBalance.innerText =`$ ${allUsers[index].accountBalance}`
+                        dispBalance.innerText =`$${allUsers[index].accountBalance}`
                         console.log(allUsers)
                         console.log(allUsers[index].firstName)
                         console.log(allUsers[index].accountBalance)
