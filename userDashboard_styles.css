@@ -47,6 +47,9 @@ body{
     border-radius: 10px;
     height: 30vh;  
 }
+.sec button{
+    color: #512d79; 
+}
 @media screen and (max-width:600px) {
     .sec{
         height: 21vh;  
