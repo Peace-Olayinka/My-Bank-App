@@ -20,7 +20,7 @@ body{
 }
 @media screen and (max-width:800px) {
     div{
-        width: 85% !important
+        width: 85% !important;
     }
 } 
 
