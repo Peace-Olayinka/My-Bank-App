@@ -74,6 +74,17 @@ body{
     }
 }
 
+#dispProfilePix{
+    width:60px; height:60px; 
+    border-radius:100%;
+    background-color:white;
+    background-image: url(./userProfileImg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* border: 2px solid white; */
+}
+
 /* for other pages */
 #dashbdbox{
     background-color: #512d79;

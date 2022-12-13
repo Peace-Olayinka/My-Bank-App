@@ -45,111 +45,115 @@
         <a href="index.html" class="text-decoration-none btn fw-bold  rounded-3" style="background-color:#6a4f89; color:white;">Home</a>
     </div>
     <hr>
-  
+    <img src="./userProfileImg.jpg" alt="" style="display: none;" id="myImg">
+
+
    <script>
-    let allUsers = []
-   const getPreviousDetails=()=>{
-         if (localStorage.localStUsers) {
-            allUsers = JSON.parse(localStorage.getItem("localStUsers"))
-            console.log(allUsers)
-        } 
-    }
-
-    // Validation
-    let regexforFName = /^([A-Z][\w]+)$/
-    let regexforLName = /^([A-Z][\w]+)$/
-    let regexforMail  = /^([\w]+)([@])([\w]+)([.])([\w]+)$/
-    let regexforPhone  = /^([\d]{11})$/
-    let regexforPass  = /^([\w]{6,9})$/
-    let regexforPIN  = /^([\d]{4})$/
-    const mySignUp=()=>{
-        var myGender = myGen.value
-        let acctNum = Math.round(Math.random()*10000000000)
-        let regDate= new Date()
-        let cardNum = Math.round(Math.random()*10000000000000000)
-        let cardID = Math.round(Math.random()*1000)
-        let expiryDate= new Date()
-        expiryDate.setDate(expiryDate.getDate() + 730)
-        //  console.log(regDate)
-        let newUser = {
-            firstName:fName.value,
-            lastName:lName.value,
-            email:inpMail.value,
-            phoneNumber:phoneNo.value,
-            password:passW.value,
-            confirmPass:confirmPW.value,
-            userTransactionPIN:userPin.value,
-            gender:myGender,
-            accountNumber:acctNum,
-            registrationDate:regDate.toLocaleDateString(),
-            accountBalance:0,
-            transaction:[],
-            cardNumber:cardNum,
-            cardIssueDate:regDate.toLocaleDateString(),
-            cardExpDate:expiryDate.toLocaleDateString(),
-            cardIDNumber:cardID,
+        let allUsers = []
+        const getPreviousDetails=()=>{
+            if (localStorage.localStUsers) {
+                allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+                console.log(allUsers)
+            } 
         }
 
-        // alternative to unload
-        // let existingUsers = JSON.parse(localStorage.getItem("localStUsers"))
-        // if (existingUsers) {
-        //     allUsers = existingUsers  
-        // }
+        // Validation
+        let regexforFName = /^([A-Z][\w]+)$/
+        let regexforLName = /^([A-Z][\w]+)$/
+        let regexforMail  = /^([\w]+)([@])([\w]+)([.])([\w]+)$/
+        let regexforPhone  = /^([\d]{11})$/
+        let regexforPass  = /^([\w]{6,9})$/
+        let regexforPIN  = /^([\d]{4})$/
+        const mySignUp=()=>{
+            var myGender = myGen.value
+            let acctNum = Math.round(Math.random()*10000000000)
+            let regDate= new Date()
+            let cardNum = Math.round(Math.random()*10000000000000000)
+            let cardID = Math.round(Math.random()*1000)
+            let expiryDate= new Date()
+            expiryDate.setDate(expiryDate.getDate() + 730)
+            //  console.log(regDate)
+            let newUser = {
+                firstName:fName.value,
+                lastName:lName.value,
+                email:inpMail.value,
+                phoneNumber:phoneNo.value,
+                password:passW.value,
+                confirmPass:confirmPW.value,
+                userTransactionPIN:userPin.value,
+                gender:myGender,
+                accountNumber:acctNum,
+                registrationDate:regDate.toLocaleDateString(),
+                accountBalance:0,
+                transaction:[],
+                cardNumber:cardNum,
+                cardIssueDate:regDate.toLocaleDateString(),
+                cardExpDate:expiryDate.toLocaleDateString(),
+                cardIDNumber:cardID,
+                profilePicture:myImg.src
+            }
 
-        if (fName.value=='' || lName.value=='' || inpMail.value==''|| passW.value==''|| phoneNo.value=='') {
-            mywarning.innerHTML = `<small class="text-danger"> fill out empty fields to continue!</small>` 
-        }
-        else if (!regexforMail.test(inpMail.value)) {
-            mywarningEM.innerHTML = `<small class="text-danger"> Invalid Email Address!!!</small>`
-            inpMail.className ="form-control is invalid"
-            console.log(' Email Adress is not correct!')
-        }
-        else if (!regexforPass.test(passW.value)) {
-            mywarningPW.innerHTML = `<small class="text-danger"> Invalid  Password!!! <br> Password must contain minimum of 6 characters and maximum of 9 characters</small>`
-            passW.className ="form-control is invalid"
-            console.log(' Password is not correct')
-            
-        }
-        else if (!regexforFName.test(fName.value)) {
-            mywarningFN.innerHTML = `<small class="text-danger"> First Name must start with CAPITAL LETTER!!!</small>`
-            fName.className ="form-control is invalid"
-            console.log(' First Name is not correct')   
-        }
-        else if (!regexforLName.test(lName.value)) {
-            mywarningLN.innerHTML = `<small class="text-danger"> Last Name must start with CAPITAL LETTER!!!</small>`
-            lName.className ="form-control is invalid"
-            console.log('Last Name is not correct')     
-        }
-        else if (!regexforPhone.test(phoneNo.value)) {
-            mywarningPH.innerHTML = `<small class="text-danger"> Phone Number must contain 11 DIGITS!!!</small>`
-            phoneNo.className ="form-control is invalid"
-            console.log('Phone Number is not correct')     
-        }
-        else if (!regexforPIN.test(userPin.value)) {
-            mywarningPN.innerHTML = `<small class="text-danger"> Transaction PIN must contain 4 DIGITS!!!</small>`
-            phoneNo.className ="form-control is invalid"
-            console.log(' User Transaction PIN is not correct')     
-        }
-        else if (confirmPW.value !=passW.value) {
-            mywarningCP.innerHTML = `<small class="text-danger">Password  not match!!!</small>`
-            mywarningPW.innerHTML = `<small class="text-danger">Password  not match!!!</small>`
-            phoneNo.className ="form-control is invalid"
-            console.log('Password not match')     
-        }
-        else{
-            allUsers.push(newUser)
-            console.log(allUsers)
-            fName.value =''
-            lName.value =''
-            inpMail.value =''
-            passW.value ='' 
-            let stringUsers =JSON.stringify(allUsers)
-            localStorage.setItem("localStUsers", stringUsers)
-            
-            window.location.href= "signIn_Page.html"
-        } 
+            // alternative to unload
+            // let existingUsers = JSON.parse(localStorage.getItem("localStUsers"))
+            // if (existingUsers) {
+            //     allUsers = existingUsers  
+            // }
 
-    }
-   </script>
+            if (fName.value=='' || lName.value=='' || inpMail.value==''|| passW.value==''|| phoneNo.value=='') {
+                mywarning.innerHTML = `<small class="text-danger"> fill out empty fields to continue!</small>` 
+            }
+            else if (!regexforMail.test(inpMail.value)) {
+                mywarningEM.innerHTML = `<small class="text-danger"> Invalid Email Address!!!</small>`
+                inpMail.className ="form-control is invalid"
+                console.log(' Email Adress is not correct!')
+            }
+            else if (!regexforPass.test(passW.value)) {
+                mywarningPW.innerHTML = `<small class="text-danger"> Invalid  Password!!! <br> Password must contain minimum of 6 characters and maximum of 9 characters</small>`
+                passW.className ="form-control is invalid"
+                console.log(' Password is not correct')
+                
+            }
+            else if (!regexforFName.test(fName.value)) {
+                mywarningFN.innerHTML = `<small class="text-danger"> First Name must start with CAPITAL LETTER!!!</small>`
+                fName.className ="form-control is invalid"
+                console.log(' First Name is not correct')   
+            }
+            else if (!regexforLName.test(lName.value)) {
+                mywarningLN.innerHTML = `<small class="text-danger"> Last Name must start with CAPITAL LETTER!!!</small>`
+                lName.className ="form-control is invalid"
+                console.log('Last Name is not correct')     
+            }
+            else if (!regexforPhone.test(phoneNo.value)) {
+                mywarningPH.innerHTML = `<small class="text-danger"> Phone Number must contain 11 DIGITS!!!</small>`
+                phoneNo.className ="form-control is invalid"
+                console.log('Phone Number is not correct')     
+            }
+            else if (!regexforPIN.test(userPin.value)) {
+                mywarningPN.innerHTML = `<small class="text-danger"> Transaction PIN must contain 4 DIGITS!!!</small>`
+                phoneNo.className ="form-control is invalid"
+                console.log(' User Transaction PIN is not correct')     
+            }
+            else if (confirmPW.value !=passW.value) {
+                mywarningCP.innerHTML = `<small class="text-danger">Password  not match!!!</small>`
+                mywarningPW.innerHTML = `<small class="text-danger">Password  not match!!!</small>`
+                phoneNo.className ="form-control is invalid"
+                console.log('Password not match')     
+            }
+            else{
+                allUsers.push(newUser)
+                console.log(allUsers)
+                fName.value =''
+                lName.value =''
+                inpMail.value =''
+                passW.value ='' 
+                let stringUsers =JSON.stringify(allUsers)
+                localStorage.setItem("localStUsers", stringUsers)
+                
+                window.location.href= "signIn_Page.html"
+            } 
+
+        }
+
+    </script>
 </body>
 </html>

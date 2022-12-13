@@ -19,19 +19,41 @@
         <h3 class="text-center"> Hi, <strong id="dispUserName"></strong></h3>
         <hr>
     </div>
+
+    <!-- image upload box -->
+    <div class="container" style="height: 80vh; display: none;" id="imgUploadBox">
+        <div class="row h-100" >
+            <div class="col-xs-11 col-lg-7 m-auto bg-white h-75 text-center">
+                <h5 class="text-center m-5">Select file to upload image</h5>
+                <input type="file" accept="image/*" name="" class="form-control my-5" id="inpImg" onchange="loadFile(event)">
+                <button class=" btn btn-success" onclick="uploadImage()">upload</button>
+                <a  href="userDashboardPage.html" class=" btn btn-danger">cancel</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- top section -->
     <div id="topsec" class="px-4"> 
+        <span id="popBox" style="display:none;" onclick="showImgUploadBox()">
+            <a href="#imguploadBox" class=" btn text-white "> Edit Profile Picture</a>
+        </span>
        
         <span  style="float: right;">
             <button onclick="hideBal()" class="btn btn-secondary btn-outline-light fw-bold " id="hideAcctBal">Hide Balance <i class="fa fa-eye-slash fs-5" aria-hidden="true"></i></button>
             <button onclick="showBal()" class="btn btn-secondary btn-outline-light fw-bold " id="showAcctBal" style="display:none;">Show Balance <i class="fa fa-eye fs-5" aria-hidden="true"></i></button>
         </span><br>
-        <img src="" id="dispImg" alt="" style="width:60px; height:60px; border-radius:100%; background-color:white;" >
-        <!-- <input type="file" name="" id=""> -->
+       
+        <!-- profile pix holder -->
+        <div id="dispProfilePix" onclick="editDP()">
+            <!-- <img  src="" id="outputImg" class="w-100 h-100 rounded-circle"> -->
+        </div>
+
         <p class="fs-5"> Account Number : <strong id="dispAcctNo"> </strong> </p> 
         <p class="fs-5" style="margin-top:-0.8em;"> Account Balace : <strong id="dispBalance"> </strong> </p> 
     
     </div>
-   
+
+    <!-- main section -->
     <div id="mainsec" class=" px-3 my-3 ">
 
         <div  class="sec text-center">
@@ -58,8 +80,6 @@
             <button class="btn w-100 h-100 btn-lg fw-bold shadow-lg " onclick="transactionHistPg()"> <img src="./money-history.svg" alt="" style="height:100px;"> <br>  Transaction History</button>
         </div>
         
-      
-
         <div  class="sec text-center">
             <button class="btn w-100 h-100 btn-lg fw-bold shadow-lg" onclick="myCards()"> <img src="./money-cards.svg" alt="" style="height:100px;"> <br> My Cards</button>
         </div>
@@ -83,16 +103,14 @@
         <div  class="sec text-center ">
             <button class="btn w-100 h-100 btn-lg  fw-bold shadow-lg "> <img src="./money-rate.svg" alt="" style="height:100px;"> <br> More...</button>
         </div> -->
-        
+
+        <!-- chart -->
         <div  class="sec text-center pt-3 px-1" onclick="transactionRate()">
             <h5>TRANSACTION CHART</h5>
             <canvas id="myChart" style="width:100%;max-width:700px" class="h-75"></canvas>
-            <!-- <button class="btn w-100 h-100 btn-lg fw-bold shadow-lg " onclick="transactionRate()"> <canvas id="myChart" style="width:100%;max-width:700px"></canvas></button> -->
         </div>
-        <!-- <div  class="sec text-center ">
-            <button class="btn w-100 h-100 btn-lg  fw-bold shadow-lg "> <img src="./money-rate.svg" alt="" style="height:100px;"> <br> Spending Rate</button>
-        </div> -->
     </div>
+    <!--close buttons -->
     <hr>
     <div class="text-center my-3">
         <button onclick="signOut()" class=" btn btn-secondary btn-outline-light fw-bold text-whitem me-3 ">Sign Out</button>
@@ -100,16 +118,19 @@
     </div>
     <hr>
 
+
     <script>
         const getCurrentUserDetails=()=>{
             allUsers = JSON.parse(localStorage.getItem("localStUsers"))
             var currentUser =  localStorage.getItem("currentUser") 
+            var customerIndex = localStorage.getItem("customerIndex")
             if (currentUser) {
                for (let index = 0; index < allUsers.length; index++) {
                     if (allUsers[index].email === currentUser) {
                         dispUserName.innerText = `${allUsers[index].firstName} ${allUsers[index].lastName}`
                         dispAcctNo.innerText = `${allUsers[index].accountNumber}`
                         dispBalance.innerText =`$${allUsers[index].accountBalance}`
+                        dispProfilePix.style.backgroundImage = `url(${allUsers[index].profilePicture})`;
                         console.log(allUsers)
                         console.log(allUsers[index].firstName)
                         console.log(allUsers[index].accountBalance)
@@ -117,6 +138,7 @@
                }
             }
         }
+
         const hideBal=()=>{
             dispBalance.style.display = "none"
             showAcctBal.style.display = "inline"
@@ -136,11 +158,58 @@
             window.location.href = "signIn_Page.html"
         }
 
+        const editDP=()=>{
+            popBox.style.display = "block"
+        }
+        const showImgUploadBox=()=>{
+            popBox.style.display = "none"
+            topsec.style.display = "none"
+            mainsec.style.display = "none"
+            imgUploadBox.style.display = "block"  
+        }
+        
+        //profile picture upload
+      
+        var allUsers  = JSON.parse(localStorage.getItem("localStUsers"))
+        var customerIndex = localStorage.getItem("customerIndex")
+        if (customerIndex) {
+            let imageInp = document.getElementById("inpImg");
+            imageInp.addEventListener("change", function() {
+                let imgReader = new FileReader();
+                imgReader.addEventListener("load", ()=>{
+                   let uploadedImage = imgReader.result;
+                    allUsers[customerIndex].profilePicture = uploadedImage;
+                    document.getElementById("dispProfilePix").style.backgroundImage =`url(${allUsers[customerIndex].profilePicture})`; 
+                    updateUser();
+                });
+                imgReader.readAsDataURL(this.files[0]);
+            })
+        }
+
+        // alternatively:
+
+        // const loadFile = (event) =>{
+        //     var reader = new FileReader();
+        //     reader.onload = function(){
+        //         var output = document.getElementById("outputImg");
+        //         output.src = reader.result; 
+        //         console.log(output.src)
+        //     }
+        //     reader.readAsDataURL(event.target.files[0]);
+        // }
+        
+        const uploadImage=()=>{
+            topsec.style.display = "block"
+            mainsec.style.display = "grid"
+            imgUploadBox.style.display = "none" 
+        }
+
         // To updatelocalStorage
         const updateUser=()=>{
             localStorage.setItem("localStUsers", JSON.stringify(allUsers))
         }
-
+   
+        // routes
         const transferPg=()=>{
             window.location.href = "transfer.html"
         }
@@ -166,8 +235,9 @@
             window.location.href = "chart.html"
         }
 
+
         var allUsers  = JSON.parse(localStorage.getItem("localStUsers"))
-        let customerIndex = localStorage.getItem("customerIndex")
+        var customerIndex = localStorage.getItem("customerIndex")
         console.log(allUsers[customerIndex].transaction)
         var deposit = allUsers[customerIndex].transaction.filter(s=>s.description=="Cash Deposit")
         console.log(deposit)
