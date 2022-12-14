@@ -45,15 +45,28 @@
             <i class="fa fa-eye fs-5 mt-2" aria-hidden="true" style="margin-left: -30px;" id="showCPW" onclick="show()"></i>
             <i class="fa fa-eye-slash fs-5 mt-2" aria-hidden="true" style=" margin-left: -30px; display:none" id="hideCPW" onclick="hide()"></i>
         </span>
-        <label for="" >Create  <span class="text-danger">*4 digits* </span>Secret PIN for your Transactions</label>
+        <!-- <label for="" >Create  <span class="text-danger">*4 digits* </span>Secret PIN for your Transactions</label>
         <label id="mywarningPN"></label>
-        <input type="number" placeholder="Enter 4 digits  secret PIN"  id="userPin" class="p-2 rounded-3 form-control">
+        <input type="number" placeholder="Enter 4 digits  secret PIN"  id="userPin" class="p-2 rounded-3 form-control"> -->
 
         <button onclick="mySignUp()" class=" btn fw-bold rounded-3 mt-2" style="background-color:#40196D; color:white;">Sign-Up</button>
         <a href="signIn_Page.html" class="text-decoration-none btn rounded-3 mt-2" style="background-color:#643a94; color:white;">Already have an account? Sign-In</a>
         <a href="index.html" class="text-decoration-none btn fw-bold  rounded-3" style="background-color:#6a4f89; color:white;">Home</a>
     </div>
     <hr>
+
+    <div id="box2"  class="my-3 m-auto px-3 py-5 rounded-4" style="display: none;">
+        <label for="" class="fw-bold fs-5 text-center mb-4">Create  <span class="text-danger">*4 digits* </span>Secret PIN for your Transactions</label>
+        <div id="mywarning2"></div>
+        <label id="mywarningPN">Enter Transaction PIN <span class="text-danger fw-bold">*</span></label>
+        <input type="number" placeholder="Enter 4 digits  secret PIN"  id="userPin" class="p-2 rounded-3 form-control">
+        <label id="mywarningCPN">Confirm PIN <span class="text-danger fw-bold">*</span></label>
+        <input type="number" placeholder="Confirm PIN"  id="confirmPin" class="p-2 rounded-3 form-control">
+
+        <button onclick="setPin()" class=" btn fw-bold rounded-3 mt-2" style="background-color:#40196D; color:white;">Set Pin</button>
+       
+    </div>
+
     <img src="./userProfileImg.jpg" alt="" style="display: none;" id="myImg">
 
     
@@ -108,7 +121,7 @@
             //     allUsers = existingUsers  
             // }
 
-            if (fName.value=='' || lName.value=='' || inpMail.value==''|| passW.value==''|| phoneNo.value=='' ||userPin.value=='') {
+            if (fName.value=='' || lName.value=='' || inpMail.value==''|| passW.value==''|| phoneNo.value==''){
                 mywarning.innerHTML = `<small class="text-danger"> fill out empty fields to continue!</small>` 
             }
             else if (!regexforMail.test(inpMail.value)) {
@@ -137,15 +150,10 @@
                 phoneNo.className ="form-control is invalid"
                 console.log('Phone Number is not correct')     
             }
-            else if (!regexforPIN.test(userPin.value)) {
-                mywarningPN.innerHTML = `<small class="text-danger"> Transaction PIN must contain 4 DIGITS!!!</small>`
-                phoneNo.className ="form-control is invalid"
-                console.log(' User Transaction PIN is not correct')     
-            }
             else if (confirmPW.value !=passW.value) {
                 mywarningCP.innerHTML = `<small class="text-danger">Password  not match!!!</small>`
                 mywarningPW.innerHTML = `<small class="text-danger">Password  not match!!!</small>`
-                phoneNo.className ="form-control is invalid"
+                passW.className ="form-control is invalid"
                 console.log('Password not match')     
             }
             else{
@@ -158,7 +166,9 @@
                 let stringUsers =JSON.stringify(allUsers)
                 localStorage.setItem("localStUsers", stringUsers)
                 
-                window.location.href= "signIn_Page.html"
+                // window.location.href= "signIn_Page.html"
+                mybox.style.display = "none"
+                box2.style.display = "flex"
             } 
         }
 
@@ -177,6 +187,32 @@
             hideCPW.style.display = "none"
             passW.type = "password"
             confirmPW.type = "password"
+        }
+        
+        const setPin =()=>{
+            allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+            let arrayLength = allUsers.length
+            let lastRegUserIndex = Number(arrayLength-1)
+            if (userPin.value=='' ||  confirmPin.value==''){
+                mywarning2.innerHTML = `<small class="text-danger"> fill out empty fields to continue!</small>` 
+            }
+            else if (!regexforPIN.test(userPin.value)) {
+                mywarningPN.innerHTML = `<small class="text-danger"> Transaction PIN must contain 4 DIGITS!!!</small>`
+                userPin.className ="form-control is invalid"
+                console.log(' User Transaction PIN is not correct')     
+            }
+            else if (userPin.value != confirmPin.value) {
+                mywarningPN.innerHTML = `<small class="text-danger"> Transaction PIN not match!!!</small>`
+                mywarningCPN.innerHTML = `<small class="text-danger"> Transaction PIN not match!!!</small>`
+                confirmPin.className ="form-control is invalid"
+                console.log(' User Transaction PIN is not correct')     
+            }
+            else{
+                allUsers[lastRegUserIndex].userTransactionPIN = userPin.value
+                localStorage.setItem("localStUsers", JSON.stringify(allUsers))
+                window.location.href= "signIn_Page.html"
+            }
+           console.log(lastRegUserIndex)
         }
     </script>
 </body>
