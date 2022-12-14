@@ -16,16 +16,29 @@
         <h5>Transfer Fund</h5>
         <hr> 
         <div class=" m-auto w-75 text-start fw-bold">
-            <label for="">Amount:</label>
+            <label for="">Amount :</label>
             <input type="number" placeholder="Enter the Amount you want to transfer" class=" form-control" id="transferAmt"><br>
-            <label for="">Account Number:</label>
+            <label for="">Account Number :</label>
             <input type="number" onkeyup="checkAcctName()" placeholder="Enter the receipient's Account Number" class="form-control" maxlength ="10" id="transferAcct"><br>
             <h3 id="resp" class=""></h3>
         </div>
         <hr> 
-        <button onclick="makeTransfer()" class=" btn btn-secondary  fw-bold text-white m-2 ">Proceed</button>
-        <a href="userDashboardPage.html" class=" btn btn-dark text-decoration-none fw-bold text-white ">Cancel</a>
-        
+        <button onclick="makeTransfer()" class=" btn btn-secondary  fw-bold m-2 ">Proceed</button>
+        <a href="userDashboardPage.html" class=" btn btn-dark fw-bold ">Cancel</a> 
+    </div>
+
+    <!-- transaction success alert -->
+    <div class="container" style="height: 75vh; display:none " id="tranSuccessBox">
+        <div class="row h-100">
+            <div class="col-xs-10 col-lg-7 shadow-lg m-auto h-75 text-white text-center" style="background-color: #512d79;">
+                <h4 class="mt-5">Transaction Successful!</h4>
+                <hr>
+                <h6 class="my-5 px-1" id="tranSuccess"></h6>
+                <hr>
+                <a href="printReceipt.html" class="btn btn-secondary fw-bold m-2">Generate Receipt</a>
+                <a href="userDashboardPage.html" class="btn btn-dark fw-bold ">&nbsp; &nbsp;  OK &nbsp; &nbsp;</a>
+            </div>
+        </div>
     </div>
 
    <script>
@@ -87,6 +100,7 @@
                                         allUsers[indexSender].accountBalance = allUsers[indexSender].accountBalance - Number(transferAmount) 
                                         senderBal = allUsers[indexSender].accountBalance
                                         transctionSuccess = true
+                                        tranSuccess.innerText = `You have successfully transfered $${transferAmount} to ${recName}`
                                         updateUser()  
                                       
                                         //for receiver
@@ -99,7 +113,9 @@
                                             }
                                         }
                                         console.log(allUsers)
-                                        window.location.href="printReceipt.html"  
+                                        // window.location.href="printReceipt.html" 
+                                        dashbdbox.style.display = "none" 
+                                        tranSuccessBox.style.display = "block"
     
                                     }else{
                                         alert("Transaction failed due to INCORRECT PIN!!!")

@@ -23,5 +23,9 @@ body{
         width: 85% !important
     }
 } 
+label{
+    color:#40196D ;
+    margin-left: 5px;
+}
 
 

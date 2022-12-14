@@ -8,20 +8,21 @@
     <link rel="stylesheet" href="signUp_styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
+    <script src="https://use.fontawesome.com/3c538cc85f.js"></script>
 </head>
 <body onload=" getPreviousDetails()">
     <div id="mybox"   class="my-3 m-auto px-3 py-5 rounded-4">
         <h2 class="text-center" style="color:#40196D">Welcome,</h2>
         <h6 class="text-center " style="color:#40196D"> Sign-Up here to get started </h6>
         <div id="mywarning"></div>
+        <label id="mywarningFN">First Name<span class="text-danger fw-bold">*</span></label>
         <input type="text" placeholder="Enter Your Firstname" id="fName" class="p-2 rounded-3 form-control"> 
-        <div id="mywarningFN"></div>
+        <label id="mywarningLN">Last Name<span class="text-danger fw-bold">*</span></label>
         <input type="text" placeholder="Enter  Your Lastname"  id="lName"  class="p-2 rounded-3 form-control">
-        <div id="mywarningLN"></div>
+        <label id="mywarningEM">Email<span class="text-danger fw-bold">*</span></label>
         <input type="email" placeholder="Enter Your Email"  id="inpMail"  class="p-2 rounded-3 form-control">
-        <div id="mywarningEM"></div>
-        <input type="text" placeholder="Enter Your Phone Number"  id="phoneNo"  class="p-2 rounded-3 form-control">
-        <div id="mywarningPH"></div>
+        <label id="mywarningPH">Phone Number<span class="text-danger fw-bold">*</span></label>
+        <input type="number" placeholder="Enter Your Phone Number"  id="phoneNo"  class="p-2 rounded-3 form-control">
         <span class=" border border-dark p-2  rounded-3">
             <label for="">Date Of Birth:</label> &nbsp;
             <input type="date"class=" border border-white" id="doBirth">
@@ -31,14 +32,22 @@
             <option value="Male" id="mGender">Male</option>
             <option value="Female" id="fGender">Female</option>
         </select>
-        <input type="password" placeholder="Enter Your Password"  id="passW"  class="p-2 rounded-3 form-control">
-        <div id="mywarningPW"></div>
-        <!-- verifications -->
-        <input type="password" placeholder="Confirm Password" id="confirmPW" class=" p-2 rounded-3 ">
-        <div id="mywarningCP"></div>
-        <label for="" class="text-danger fs-6">Create a Secret *4 digits* PIN for your Transactions</label>
+        <label id="mywarningPW">Password<span class="text-danger fw-bold">*</span></label>
+        <span class="d-flex">
+            <input type="password" placeholder="Enter Your Password"  id="passW"  class="p-2 rounded-3 form-control">
+            <i class="fa fa-eye fs-5 mt-2" aria-hidden="true" style="margin-left: -30px;" id="showPW" onclick="show()"></i>
+            <i class="fa fa-eye-slash fs-5 mt-2" aria-hidden="true" style=" margin-left: -30px; display:none" id="hidePW" onclick="hide()"></i>
+        </span>
+        <!-- confirmation -->
+        <label id="mywarningCP">Confirm Password<span class="text-danger fw-bold">*</span></label>
+        <span class="d-flex">
+            <input type="password" placeholder="Confirm Password" id="confirmPW" class=" p-2 rounded-3 form-control">
+            <i class="fa fa-eye fs-5 mt-2" aria-hidden="true" style="margin-left: -30px;" id="showCPW" onclick="show()"></i>
+            <i class="fa fa-eye-slash fs-5 mt-2" aria-hidden="true" style=" margin-left: -30px; display:none" id="hideCPW" onclick="hide()"></i>
+        </span>
+        <label for="" >Create  <span class="text-danger">*4 digits* </span>Secret PIN for your Transactions</label>
+        <label id="mywarningPN"></label>
         <input type="number" placeholder="Enter 4 digits  secret PIN"  id="userPin" class="p-2 rounded-3 form-control">
-        <div id="mywarningPN"></div>
 
         <button onclick="mySignUp()" class=" btn fw-bold rounded-3 mt-2" style="background-color:#40196D; color:white;">Sign-Up</button>
         <a href="signIn_Page.html" class="text-decoration-none btn rounded-3 mt-2" style="background-color:#643a94; color:white;">Already have an account? Sign-In</a>
@@ -47,7 +56,7 @@
     <hr>
     <img src="./userProfileImg.jpg" alt="" style="display: none;" id="myImg">
 
-
+    
    <script>
         let allUsers = []
         const getPreviousDetails=()=>{
@@ -99,7 +108,7 @@
             //     allUsers = existingUsers  
             // }
 
-            if (fName.value=='' || lName.value=='' || inpMail.value==''|| passW.value==''|| phoneNo.value=='') {
+            if (fName.value=='' || lName.value=='' || inpMail.value==''|| passW.value==''|| phoneNo.value=='' ||userPin.value=='') {
                 mywarning.innerHTML = `<small class="text-danger"> fill out empty fields to continue!</small>` 
             }
             else if (!regexforMail.test(inpMail.value)) {
@@ -151,9 +160,24 @@
                 
                 window.location.href= "signIn_Page.html"
             } 
-
         }
 
+        const show=()=>{
+            showPW.style.display = "none"
+            showCPW.style.display = "none"
+            hidePW.style.display = "inline"
+            hideCPW.style.display = "inline"
+            passW.type = "text"
+            confirmPW.type = "text"
+        }
+        const hide=()=>{
+            showPW.style.display = "inline"
+            showCPW.style.display = "inline"
+            hidePW.style.display = "none"
+            hideCPW.style.display = "none"
+            passW.type = "password"
+            confirmPW.type = "password"
+        }
     </script>
 </body>
 </html>
