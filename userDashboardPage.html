@@ -235,7 +235,7 @@
             window.location.href = "chart.html"
         }
 
-
+        // transaction chart
         var allUsers  = JSON.parse(localStorage.getItem("localStUsers"))
         var customerIndex = localStorage.getItem("customerIndex")
         console.log(allUsers[customerIndex].transaction)
@@ -273,7 +273,7 @@
             console.log(withdrawSum)
         })
         
-        var transfer = allUsers[customerIndex].transaction.filter(s=>s.description.includes("Funds Transfer"))
+        var transfer = allUsers[customerIndex].transaction.filter(s=>s.description.includes("Funds Transfer to"))
         console.log(transfer)
         var transferList=[]
         var transferSum
@@ -311,19 +311,33 @@
             billPaymentSum = billPaymentList.reduce((add, newTrans)=>add + newTrans, 0)
             console.log(billPaymentSum)
         })
-        console.log( depositSum, withdrawSum,  transferSum, airtimeSum, billPaymentSum)
+        
+        var transferRec = allUsers[customerIndex].transaction.filter(s=>s.description.includes("Transfer received from"))
+        console.log(transferRec)
+        var transferRecList=[]
+        var transferRecSum
+        transferRec.map((a, index)=>{
+            var realAmount = Number(a.Amount)
+            transferRecList.push(realAmount)
+            // console.log(transferRecList)
+            // adding numbers in an array in ES6
+            transferRecSum = transferRecList.reduce((add, newTrans)=>add + newTrans, 0)
+            console.log(transferRecSum)
+        })
+        console.log( depositSum, withdrawSum,  transferSum, airtimeSum, billPaymentSum, transferRecSum)
         
         var dep = depositSum
         var wit = withdrawSum
         var tran = transferSum
         var air = airtimeSum
-        var bill = billPaymentSum   
+        var bill = billPaymentSum  
+        var recTrans = transferRecSum
 
         // transaction Chart
         //bar chart
-        // var xValues = ["Deposit", "Withdrawal", " transfer", "Airtime", "Bills", "others"];
-        // var yValues = [dep, wit, tran, air, bill, 0];
-        // var barColors = ["green", "red","brown","orange","gold"];
+        // varvar xValues = ["Deposit", "Withdrawal", " Transfer Paid ", "Airtime", "Bills","Trans.Rec","others"];
+        // var yValues = [dep, wit, tran, air, bill, recTrans, 0];
+        // var barColors = ["green", "red","brown","orange","gold" , "blue"];
         
         // new Chart("myChart", {
         //   type: "bar",
@@ -344,9 +358,9 @@
         // });
         
         //pie chart
-        var xValues = ["Deposit", "Withdrawal", " transfer", "Airtime", "Bills", "others"];
-        var yValues = [dep, wit, tran, air, bill, 0];
-        var barColors = ["green", "red","brown","orange","gold"];
+        var xValues = ["Deposit", "Withdrawal", " Transfer Paid ", "Airtime", "Bills","Trans.Rec","others"];
+        var yValues = [dep, wit, tran, air, bill,recTrans, 0];
+        var barColors = ["green", "red","brown","orange","gold", "blue"];
         
         new Chart("myChart", {
         type: "pie",

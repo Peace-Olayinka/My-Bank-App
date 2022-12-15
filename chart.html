@@ -28,135 +28,150 @@
    
 
   <script>
+    // transaction chart
     var allUsers  = JSON.parse(localStorage.getItem("localStUsers"))
-    let customerIndex = localStorage.getItem("customerIndex")
-    console.log(allUsers[customerIndex].transaction)
-    var deposit = allUsers[customerIndex].transaction.filter(s=>s.description=="Cash Deposit")
-    console.log(deposit)
-    var depositList=[]
-    var depositSum
-    deposit.map((a, index)=>{
-        var realAmount = Number(a.Amount)
-        depositList.push(realAmount)
-        // console.log(depositList)
-        // adding numbers in an array in ES6
-        depositSum = depositList.reduce((add, newTrans)=>add + newTrans, 0)
-        console.log(depositSum)
+        var customerIndex = localStorage.getItem("customerIndex")
+        console.log(allUsers[customerIndex].transaction)
+        var deposit = allUsers[customerIndex].transaction.filter(s=>s.description=="Cash Deposit")
+        console.log(deposit)
+        var depositList=[]
+        var depositSum
+        deposit.map((a, index)=>{
+            var realAmount = Number(a.Amount)
+           depositList.push(realAmount)
+            // console.log(depositList)
+            // adding numbers in an array in ES6
+            depositSum = depositList.reduce((add, newTrans)=>add + newTrans, 0)
+            console.log(depositSum)
 
-        // or using ES5 syntax as follows
-        // depositSum = depositList.reduce(add, 0)
-        // console.log(depositSum)
-    })
-    // function add to perform the ES5 operation:
-    // function add(cummulative, newTrans) {
-    //     return cummulative + newTrans
-    // }
+            // or using ES5 syntax as follows
+            // depositSum = depositList.reduce(add, 0)
+            // console.log(depositSum)
+        })
+        // function add to perform the ES5 operation:
+        // function add(cummulative, newTrans) {
+        //     return cummulative + newTrans
+        // }
 
-    var withdraw = allUsers[customerIndex].transaction.filter(s=>s.description=="Cash Withdrawal")
-    console.log(withdraw)
-    var withdrawList=[]
-    var withdrawSum
-    withdraw.map((a, index)=>{
-        var realAmount = Number(a.Amount)
-        withdrawList.push(realAmount)
-        // console.log(withdrawList)
-        // adding numbers in an array in ES6
-        withdrawSum = withdrawList.reduce((add, newTrans)=>add + newTrans, 0)
-        console.log(withdrawSum)
-    })
-    
-    var transfer = allUsers[customerIndex].transaction.filter(s=>s.description.includes("Funds Transfer"))
-    console.log(transfer)
-    var transferList=[]
-    var transferSum
-    transfer.map((a, index)=>{
-        var realAmount = Number(a.Amount)
-        transferList.push(realAmount)
-        // console.log(transferList)
-        // adding numbers in an array in ES6
-        transferSum = transferList.reduce((add, newTrans)=>add + newTrans, 0)
-        console.log(transferSum)
-    })
+        var withdraw = allUsers[customerIndex].transaction.filter(s=>s.description=="Cash Withdrawal")
+        console.log(withdraw)
+        var withdrawList=[]
+        var withdrawSum
+        withdraw.map((a, index)=>{
+            var realAmount = Number(a.Amount)
+            withdrawList.push(realAmount)
+            // console.log(withdrawList)
+            // adding numbers in an array in ES6
+            withdrawSum = withdrawList.reduce((add, newTrans)=>add + newTrans, 0)
+            console.log(withdrawSum)
+        })
+        
+        var transfer = allUsers[customerIndex].transaction.filter(s=>s.description.includes("Funds Transfer to"))
+        console.log(transfer)
+        var transferList=[]
+        var transferSum
+        transfer.map((a, index)=>{
+            var realAmount = Number(a.Amount)
+            transferList.push(realAmount)
+            // console.log(transferList)
+            // adding numbers in an array in ES6
+            transferSum = transferList.reduce((add, newTrans)=>add + newTrans, 0)
+            console.log(transferSum)
+        })
 
-    var airtime = allUsers[customerIndex].transaction.filter(s=>s.description.includes("Airtime"))
-    console.log(airtime)
-    var airtimeList=[]
-    var airtimeSum
-    airtime.map((a, index)=>{
-        var realAmount = Number(a.Amount)
-        airtimeList.push(realAmount)
-        // console.log(airtimeList)
-        // adding numbers in an array in ES6
-        airtimeSum = airtimeList.reduce((add, newTrans)=>add + newTrans, 0)
-        console.log(airtimeSum)
-    })
+        var airtime = allUsers[customerIndex].transaction.filter(s=>s.description.includes("Airtime"))
+        console.log(airtime)
+        var airtimeList=[]
+        var airtimeSum
+        airtime.map((a, index)=>{
+            var realAmount = Number(a.Amount)
+            airtimeList.push(realAmount)
+            // console.log(airtimeList)
+            // adding numbers in an array in ES6
+            airtimeSum = airtimeList.reduce((add, newTrans)=>add + newTrans, 0)
+            console.log(airtimeSum)
+        })
 
-    var billPayment = allUsers[customerIndex].transaction.filter(s=>s.description.includes("Bills Payment"))
-    console.log(billPayment)
-    var billPaymentList=[]
-    var billPaymentSum
-    billPayment.map((a, index)=>{
-        var realAmount = Number(a.Amount)
-        billPaymentList.push(realAmount)
-        // console.log(billPaymentList)
-        // adding numbers in an array in ES6
-        billPaymentSum = billPaymentList.reduce((add, newTrans)=>add + newTrans, 0)
-        console.log(billPaymentSum)
-    })
-    console.log( depositSum, withdrawSum,  transferSum, airtimeSum, billPaymentSum)
+        var billPayment = allUsers[customerIndex].transaction.filter(s=>s.description.includes("Bills Payment"))
+        console.log(billPayment)
+        var billPaymentList=[]
+        var billPaymentSum
+        billPayment.map((a, index)=>{
+            var realAmount = Number(a.Amount)
+            billPaymentList.push(realAmount)
+            // console.log(billPaymentList)
+            // adding numbers in an array in ES6
+            billPaymentSum = billPaymentList.reduce((add, newTrans)=>add + newTrans, 0)
+            console.log(billPaymentSum)
+        })
+        
+        var transferRec = allUsers[customerIndex].transaction.filter(s=>s.description.includes("Transfer received from"))
+        console.log(transferRec)
+        var transferRecList=[]
+        var transferRecSum
+        transferRec.map((a, index)=>{
+            var realAmount = Number(a.Amount)
+            transferRecList.push(realAmount)
+            // console.log(transferRecList)
+            // adding numbers in an array in ES6
+            transferRecSum = transferRecList.reduce((add, newTrans)=>add + newTrans, 0)
+            console.log(transferRecSum)
+        })
+        console.log( depositSum, withdrawSum,  transferSum, airtimeSum, billPaymentSum, transferRecSum)
+        
+        var dep = depositSum
+        var wit = withdrawSum
+        var tran = transferSum
+        var air = airtimeSum
+        var bill = billPaymentSum  
+        var recTrans = transferRecSum
 
-    var dep = depositSum
-    var wit = withdrawSum
-    var tran = transferSum
-    var air = airtimeSum
-    var bill = billPaymentSum
+        // transaction Chart
+        //bar chart
+        var xValues = ["Deposit", "Withdrawal", " Transfer Paid ", "Airtime", "Bills","Trans.Rec","others"];
+        var yValues = [dep, wit, tran, air, bill, recTrans, 0];
+        var barColors = ["green", "red","brown","orange","gold" , "blue"];
+        
+        new Chart("myChart", {
+          type: "bar",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            legend: {display: false},
+            title: {
+              display: true,
+              text: "Transactions Rate"
+            }
+          }
+        });
+        
+        //pie chart
+        // var xValues = ["Deposit", "Withdrawal", " Transfer Paid ", "Airtime", "Bills","Trans Receive","others"];
+        // var yValues = [dep, wit, tran, air, bill,recTrans, 0];
+        // var barColors = ["green", "red","brown","orange","gold", "blue"];
+        
+        // new Chart("myChart", {
+        // type: "pie",
+        // data: {
+        //     labels: xValues,
+        //     datasets: [{
+        //     backgroundColor: barColors,
+        //     data: yValues
+        //     }]
+        // },
+        // options: {
+        //     title: {
+        //     display: true,
+        //     text: "Transactions Rate"
+        //     }
+        // }
+        // });
 
-    // transaction Chart
-    //bar chart
-    var xValues = ["Deposit", "Withdrawal", " transfer", "Airtime", "Bills", "others"];
-    var yValues = [dep, wit, tran, air, bill, 0];
-    var barColors = ["green", "red","brown","orange","gold"];
-    
-    new Chart("myChart", {
-      type: "bar",
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: barColors,
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        title: {
-          display: true,
-          text: "Transactions Rate"
-        }
-      }
-    });
-    
-    // pie chart
-    
-    // var xValues = ["Deposit", "Withdrawal", " transfer", "Airtime", "Bills", "others"];
-    // var yValues = [dep, wit, tran, air, bill, 0];
-    // var barColors = ["green", "red","brown","orange","gold"];
-
-    // new Chart("myChart", {
-    // type: "pie",
-    // data: {
-    //     labels: xValues,
-    //     datasets: [{
-    //     backgroundColor: barColors,
-    //     data: yValues
-    //     }]
-    // },
-    // options: {
-    //     title: {
-    //     display: true,
-    //     text: "Transactions Rate"
-    //     }
-    // }
-    // });
   </script>
 
 

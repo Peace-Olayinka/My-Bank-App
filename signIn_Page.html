@@ -35,11 +35,11 @@
     </div>
   
     
-   <script>
+   <script> 
         const myLogin=()=>{
             var userEmail = inpMail.value
             var userPassword = passW.value
-            allUsers = JSON.parse(localStorage.getItem("localStUsers"))
+            let allUsers = JSON.parse(localStorage.getItem("localStUsers"))
             inpMail.value=""
             passW.value=""
             let found = false
