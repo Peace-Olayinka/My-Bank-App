@@ -57,4 +57,11 @@
     #hideImg{
         display: none;
     }
+
+    #footBox{
+        background-image: url();
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: contain;
+    }
 }
