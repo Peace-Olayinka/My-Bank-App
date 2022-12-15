@@ -11,9 +11,9 @@
     <script src="https://use.fontawesome.com/3c538cc85f.js"></script>
 </head>
 <body onload=" getPreviousDetails()">
-    <div id="mybox"   class="my-3 m-auto px-3 py-5 rounded-4">
+    <div id="mybox"   class="my-5 m-auto px-3 py-5 rounded-4">
         <h2 class="text-center" style="color:#40196D">Welcome,</h2>
-        <h6 class="text-center " style="color:#40196D"> Sign-Up here to get started </h6>
+        <h6 class="text-center px-2 " > Please type in your details to sign-up and create a new <strong style="color:#40196D;"> OTBank </strong> account </h6>
         <div id="mywarning"></div>
         <label id="mywarningFN">First Name<span class="text-danger fw-bold">*</span></label>
         <input type="text" placeholder="Enter Your Firstname" id="fName" class="p-2 rounded-3 form-control"> 
@@ -24,7 +24,7 @@
         <label id="mywarningPH">Phone Number<span class="text-danger fw-bold">*</span></label>
         <input type="number" placeholder="Enter Your Phone Number"  id="phoneNo"  class="p-2 rounded-3 form-control">
         <span class=" border border-dark p-2  rounded-3">
-            <label for="">Date Of Birth:</label> &nbsp;
+            <span>Date Of Birth:</span> &nbsp;
             <input type="date"class=" border border-white" id="doBirth">
         </span>
         <select name="" id="myGen" class="p-2 rounded-3">
@@ -49,14 +49,21 @@
         <label id="mywarningPN"></label>
         <input type="number" placeholder="Enter 4 digits  secret PIN"  id="userPin" class="p-2 rounded-3 form-control"> -->
 
-        <button onclick="mySignUp()" class=" btn fw-bold rounded-3 mt-2" style="background-color:#40196D; color:white;">Sign-Up</button>
-        <a href="signIn_Page.html" class="text-decoration-none btn rounded-3 mt-2" style="background-color:#643a94; color:white;">Already have an account? Sign-In</a>
-        <a href="index.html" class="text-decoration-none btn fw-bold  rounded-3" style="background-color:#6a4f89; color:white;">Home</a>
+        <div class="ps-1">
+            Forgot Password?
+            <a href="#" class="fw-bold" style="color:#643a94">Reset it</a>
+        </div>
+        <div class="ps-1 my-2">
+            Already have an account?
+            <a href="signIn_Page.html" class="fw-bold" style="color:#643a94"> Sign-in here</a>
+        </div>
+        <button onclick="mySignUp()" class=" btn fw-bold rounded-3 mt-3" style="background-color:#40196D; color:white;">Create Account</button>
+        <a href="index.html" class="text-decoration-none fw-bold text-center mt-3" style="color:#6a4f89;">Home</a>
     </div>
     <hr>
 
     <div id="box2"  class="my-3 m-auto px-3 py-5 rounded-4" style="display: none;">
-        <label for="" class="fw-bold fs-5 text-center mb-4">Create  <span class="text-danger">*4 digits* </span>Secret PIN for your Transactions</label>
+        <label for="" class="fw-bold text-center my-3">Create  <span class="text-danger">*4 digits* </span>Secret PIN for your Transactions</label>
         <div id="mywarning2"></div>
         <label id="mywarningPN">Enter Transaction PIN <span class="text-danger fw-bold">*</span></label>
         <input type="number" placeholder="Enter 4 digits  secret PIN"  id="userPin" class="p-2 rounded-3 form-control">

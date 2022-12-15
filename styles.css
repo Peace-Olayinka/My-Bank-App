@@ -55,13 +55,25 @@
 }
 @media screen and (max-width:800px) {
     #hideImg{
-        display: none;
+        display:none;
     }
 
     #footBox{
         background-image: url();
-        background-repeat: no-repeat;
-        background-position: right;
-        background-size: contain;
+        width: 95% !important;
+        height: auto !important;
+    }
+    #rows{
+        margin-top: 1em !important;
+        margin-bottom:1em !important;
+    }
+    #textbox{
+        text-align: center;
+        padding: 1.2em !important;
+        /* padding-right: 1.2em !important;  */
+      
+    }
+    #herotxt{
+        font-size: 1.8rem;
     }
 }

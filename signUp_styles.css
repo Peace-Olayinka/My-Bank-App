@@ -14,10 +14,11 @@ body{
     flex-direction: column;
     gap: 10px;
     justify-content: center;
-    border-top: 2px solid #40196D;
-    border-left: 2px solid #40196D;
+    border-top: 5px solid #40196D;
+    border-left: 5px solid #40196D;
     box-shadow: 10px 10px 10px #514a5a;    
 }
+/* create PIN box */
 #box2{
     width: 35%; 
     height: 60vh;
@@ -26,8 +27,8 @@ body{
     flex-direction: column;
     gap: 10px;
     justify-content: center;
-    border-top: 2px solid #40196D;
-    border-left: 2px solid #40196D;
+    border-top: 5px solid #40196D;
+    border-left: 5px solid #40196D;
     box-shadow: 10px 10px 10px #514a5a;    
 }
 @media screen and (max-width:800px) {
@@ -38,6 +39,7 @@ body{
 label{
     color:#40196D ;
     margin-left: 5px;
+    font-weight: bold;
 }
 
 
