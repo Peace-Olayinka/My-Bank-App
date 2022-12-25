@@ -7,9 +7,12 @@ body{
     background-color: #dfd1ed !important;
 }
 #topsec{
-    background-color: #512d79;
-    color: white;
+    color: #512d79;
+    background-color: white;
     padding: 1em;
+}
+#popBox a{
+    color: #512d79;
 }
 @media screen and (max-width:600px) {
     #topsec p{
@@ -19,7 +22,7 @@ body{
 #namebox{
     position: sticky;
     top: 0;
-    background-color: #512d79;
+    background-color:#512d79;
     color: white;
 }
 #mainsec{
