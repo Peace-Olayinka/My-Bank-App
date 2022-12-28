@@ -66,9 +66,17 @@
         <label for="" class="fw-bold text-center my-3">Create  <span class="text-danger">*4 digits* </span>Secret PIN for your Transactions</label>
         <div id="mywarning2"></div>
         <label id="mywarningPN">Enter Transaction PIN <span class="text-danger fw-bold">*</span></label>
-        <input type="number" placeholder="Enter 4 digits  secret PIN"  id="userPin" class="p-2 rounded-3 form-control">
+        <span class="d-flex">
+            <input type="number" placeholder="Enter 4 digits  secret PIN"  id="userPin" class="p-2 rounded-3 form-control">
+            <i class="fa fa-eye fs-5 mt-2" aria-hidden="true" style="margin-left: -30px;" id="showPIN" onclick="show()"></i>
+            <i class="fa fa-eye-slash fs-5 mt-2" aria-hidden="true" style=" margin-left: -30px; display:none" id="hidePIN" onclick="hide()"></i>
+        </span>
         <label id="mywarningCPN">Confirm PIN <span class="text-danger fw-bold">*</span></label>
-        <input type="number" placeholder="Confirm PIN"  id="confirmPin" class="p-2 rounded-3 form-control">
+        <span class="d-flex">
+            <input type="number" placeholder="Confirm PIN"  id="confirmPin" class="p-2 rounded-3 form-control">
+            <i class="fa fa-eye fs-5 mt-2" aria-hidden="true" style="margin-left: -30px;" id="showCPIN" onclick="show()"></i>
+            <i class="fa fa-eye-slash fs-5 mt-2" aria-hidden="true" style=" margin-left: -30px; display:none" id="hideCPIN" onclick="hide()"></i>
+        </span>
 
         <button onclick="setPin()" class=" btn fw-bold rounded-3 mt-2" style="background-color:#40196D; color:white;">Set Pin</button>
        
@@ -95,13 +103,13 @@
         let regexforPIN  = /^([\d]{4})$/
         const mySignUp=()=>{
             var myGender = myGen.value
-            let acctNum = Math.round(Math.random()*10000000000)
-            let regDate= new Date()
-            let cardNum = Math.round(Math.random()*10000000000000000)
-            let cardID = Math.round(Math.random()*1000)
-            let expiryDate= new Date()
-            expiryDate.setDate(expiryDate.getDate() + 730)
-            //  console.log(regDate)
+            let acctNum = Math.ceil(Math.random()*10000000000)
+            let cardNum = Math.ceil(Math.random()*10000000000000000)
+            let cardID  = Math.ceil(Math.random()*1000)
+            let regDate = new Date()
+            let expiryDate = new Date()
+            expiryDate.setDate(expiryDate.getDate() + 730)  
+            // console.log( regDate, expiryDate)
             let newUser = {
                 firstName:fName.value,
                 lastName:lName.value,
@@ -130,6 +138,7 @@
 
             if (fName.value=='' || lName.value=='' || inpMail.value==''|| passW.value==''|| phoneNo.value==''){
                 mywarning.innerHTML = `<small class="text-danger"> fill out empty fields to continue!</small>` 
+                // window.location.href="#mybox"
             }
             else if (!regexforMail.test(inpMail.value)) {
                 mywarningEM.innerHTML = `<small class="text-danger"> Invalid Email Address!!!</small>`
@@ -177,23 +186,37 @@
                 mybox.style.display = "none"
                 box2.style.display = "flex"
             } 
+            // still need to work on math object
+            // console.log(acctNum, cardNum, cardID)
         }
 
         const show=()=>{
             showPW.style.display = "none"
             showCPW.style.display = "none"
-            hidePW.style.display = "inline"
+            showPIN.style.display = "none"
+            showCPIN.style.display = "none"
+            hidePW.style.display  = "inline"
             hideCPW.style.display = "inline"
+            hidePIN.style.display = "inline"
+            hideCPIN.style.display = "inline"
             passW.type = "text"
             confirmPW.type = "text"
+            userPin.type = "number"
+            confirmPin.type = "number"
         }
         const hide=()=>{
             showPW.style.display = "inline"
             showCPW.style.display = "inline"
+            showPIN.style.display = "inline"
+            showCPIN.style.display = "inline"
             hidePW.style.display = "none"
             hideCPW.style.display = "none"
+            hidePIN.style.display = "none"
+            hideCPIN.style.display = "none"
             passW.type = "password"
             confirmPW.type = "password"
+            userPin.type = "password"
+            confirmPin.type = "password"
         }
         
         const setPin =()=>{
