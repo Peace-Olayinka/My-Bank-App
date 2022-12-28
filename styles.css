@@ -12,6 +12,15 @@
 }
 #nav1btn{
     background-color:  #40196D;
+    color: white;
+}
+#nav1btn:hover{
+    background-color: white;
+    color:  #40196D !important;   
+}
+#nav1login:hover{
+    background-color:  #40196D;
+    color: white;
 }
 #herotxt{
     font-family: 'Franklin Gothic Medium';
@@ -37,17 +46,17 @@
 .fa{
     color: #40196D;
 }
-@keyframes translate {
+@keyframes scale {
     0% {
-        transform: translate(100%,0);
+        transform: scale(0);
     }
 
     100% {
-        transform: translate(5%, 0);
+        transform: scale(100%);
     }
-} 
+}
 #animateBox{
-    animation-name: translate;
+    animation-name: scale;
     animation-duration: 2000ms;
     animation-iteration-count:1;
     animation-fill-mode: forwards;
@@ -58,6 +67,14 @@
         display:none;
     }
 
+    #herotextbox{
+        animation-name: scale;
+        animation-duration: 2000ms;
+        animation-iteration-count:1;
+        animation-fill-mode: forwards;
+        animation-delay:0ms;
+    }
+  
     #footBox{
         background-image: url();
         width: 95% !important;
